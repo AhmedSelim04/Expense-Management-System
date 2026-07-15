@@ -9,8 +9,11 @@ if (!isset($_SESSION['user_id'])) {
         header("Location: index.php?page=login");
         exit();
     }
-    
-    require_once '../app/views/login.php';
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        require_once '../app/controllers/login-action.php';
+    } else {
+        require_once '../app/views/login.php';
+    }
     exit();
 }
 

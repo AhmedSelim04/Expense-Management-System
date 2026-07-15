@@ -1,15 +1,14 @@
 <?php
-// session_start();
+// app/views/login.php
 
-if (isset($_SESSION['user_id'])) {
-    header("Location: index.php");
-    exit();
-}
-
+// 1. جلب رسائل الخطأ والإيميل القديم من الـ Session إن وجدا
 $error = isset($_SESSION['login_error']) ? $_SESSION['login_error'] : '';
-unset($_SESSION['login_error']);
-?>
+$oldEmail = isset($_SESSION['old_email']) ? $_SESSION['old_email'] : '';
 
+// 2. حذفهم فوراً من الـ Session حتى لا يظهروا مجدداً عند عمل Refresh للصفحة
+unset($_SESSION['login_error']);
+unset($_SESSION['old_email']);
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -29,7 +28,7 @@ unset($_SESSION['login_error']);
             width: 100%;
             max-width: 400px;
             border: none;
-            border-radius: 10px;
+            border-radius: 12px;
         }
     </style>
 </head>
@@ -42,20 +41,23 @@ unset($_SESSION['login_error']);
     </div>
 
     <?php if (!empty($error)): ?>
-        <div class="alert alert-danger py-2 text-center" role="alert">
+        <div class="alert alert-danger py-2 text-center" role="alert" style="font-size: 0.9rem;">
             <?php echo htmlspecialchars($error); ?>
         </div>
     <?php endif; ?>
 
-    <form action="" method="">
+    <form action="index.php?page=login" method="POST">
         <div class="mb-3">
             <label for="email" class="form-label">Email Address</label>
-            <input type="email" name="email" id="email" class="form-control" placeholder="admin@arabapps.com" required>
+            <input type="email" name="email" id="email" class="form-control" 
+                   placeholder="admin@arabapps.com" 
+                   value="<?php echo htmlspecialchars($oldEmail); ?>" required>
         </div>
         
         <div class="mb-3">
             <label for="password" class="form-label">Password</label>
-            <input type="password" name="password" id="password" class="form-control" placeholder="••••••" required>
+            <input type="password" name="password" id="password" class="form-control" 
+                   placeholder="••••••" required>
         </div>
 
         <button type="submit" class="btn btn-primary w-100 py-2 mt-2">Login</button>
