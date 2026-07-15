@@ -6,7 +6,6 @@ require_once __DIR__ . '/../app/configs/database.php';
 $database = new Database();
 $db = $database->getConnection();
 
-// تشفير الباسورد 123456 بشكل ديناميكي ومضمون 100%
 $new_password = password_hash('123456', PASSWORD_DEFAULT);
 
 $query = "UPDATE users SET password = :password WHERE id = 1";

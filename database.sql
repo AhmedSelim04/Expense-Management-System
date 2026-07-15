@@ -1,19 +1,15 @@
-CREATE DATABASE IF NOT EXISTS expense_db;
-USE expense_db;
+CREATE DATABASE IF NOT EXISTS `expense_db` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE `expense_db`;
 
-CREATE TABLE IF NOT EXISTS users (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    email VARCHAR(255) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL
-);
-INSERT INTO users (email, password) VALUES ('admin@arabapps.com', '$2y$10$f1pYg9F/9K0Sg1X9eA7vU.Zk1j9S2v7vN3G9.O1h9xQ7Z3V0o2.Gy');
+CREATE TABLE IF NOT EXISTS `users` (
+    `id` INT AUTO_INCREMENT PRIMARY KEY,
+    `email` VARCHAR(150) NOT NULL UNIQUE,
+    `password` VARCHAR(255) NOT NULL, 
+    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
 
-CREATE TABLE IF NOT EXISTS expenses (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(255) NOT NULL,
-    amount DECIMAL(10, 2) NOT NULL,
-    category VARCHAR(100) NOT NULL,
-    date DATE NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
+INSERT INTO `users` (`email`, `password`) 
+VALUES (
+    'admin@arabapps.com', 
+    '$2y$12$WqirRj7RBTcFNNK3IXxjseI91JOam2FGoe8NnTrzrExPCtUEFYRxO'
+)

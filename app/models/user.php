@@ -6,7 +6,7 @@ class Users{
     public function __construct($db){
         $this->conn = $db;
     }
-    public function get_by_email($email) {
+    public function findByEmail($email) {
         
         $query = "SELECT * FROM " . $this->table 
                 . " WHERE email = :email";
