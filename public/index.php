@@ -18,12 +18,10 @@ if (!isset($_SESSION['user_id'])) {
         exit();
     }
 }
-
 switch ($page) {
     case 'index':
         require_once __DIR__ . '/../app/views/index.php';
         break;
-        
     case 'login':
         require_once __DIR__ . '/../app/views/login.php';
         break;
@@ -31,11 +29,18 @@ switch ($page) {
     case 'create':
         require_once __DIR__ . '/../app/views/create.php';
         break;
-
     case 'edit':
         require_once __DIR__ . '/../app/views/edit.php';
         break;
-
+    case 'create-action':
+        require_once __DIR__ . '/../app/controllers/create-action.php';
+        break;
+    case 'edit-action':
+        require_once __DIR__ . '/../app/controllers/edit-action.php';
+        break;
+    case 'delete-action':
+        require_once __DIR__ . '/../app/controllers/delete-action.php';
+        break;
     case 'login-action':
         require_once __DIR__ . '/../app/controllers/login-action.php';
         break;

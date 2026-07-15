@@ -1,8 +1,7 @@
 <?php
-// app/controllers/login-action.php
 
 require_once __DIR__ . '/../configs/database.php';
-require_once __DIR__ . '/../models/user.php'; // تأكد أن اسم ملف الموديل هكذا (user.php)
+require_once __DIR__ . '/../models/user.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
@@ -14,8 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $database = new Database();
         $db = $database->getConnection();
         
-        $userModel = new Users($db); // تأكد من اسم الكلاس (Users أو User)
-        
+        $userModel = new Users($db);
         $user = $userModel->findByEmail($email);
 
         if ($user && password_verify($password, $user['password'])) {
