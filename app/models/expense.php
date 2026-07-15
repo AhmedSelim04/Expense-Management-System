@@ -30,16 +30,37 @@ class Expense{
         
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
-    public function create($user_id, $amount, $category, $expense_date) {
-        $query = "INSERT INTO " . $this->table . " (user_id, amount, category, expense_date) 
-                  VALUES (:user_id, :amount, :category, :expense_date)";
-        
+    public function create($user_id, $title, $amount, $category, $expense_date) {
+    $query = "INSERT INTO " . $this->table . " 
+              (user_id, title, amount, category, expense_date) 
+              VALUES (:user_id, :title, :amount, :category, :expense_date)";
+
+    $stmt = $this->conn->prepare($query);
+
+    return $stmt->execute([
+        ':user_id'      => $user_id,
+        ':title'        => $title,
+        ':amount'       => $amount,
+        ':category'     => $category,
+        ':expense_date' => $expense_date
+    ]);
+}
+    public function update($id, $user_id, $amount, $category, $title, $expense_date) {
+        $query = "UPDATE " . $this->table . " 
+                  SET amount = :amount, 
+                      category = :category, 
+                      title = :title, 
+                      expense_date = :expense_date 
+                  WHERE id = :id AND user_id = :user_id";
+                  
         $stmt = $this->conn->prepare($query);
         
         return $stmt->execute([
+            ':id' => $id,
             ':user_id' => $user_id,
             ':amount' => $amount,
             ':category' => $category,
+            ':title' => $title,
             ':expense_date' => $expense_date
         ]);
     }

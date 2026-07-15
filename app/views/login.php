@@ -1,7 +1,5 @@
 <?php
-// app/views/login.php
 
-// جلب رسائل الخطأ أو الإيميل القديم إن وُجدا ثم مسحهما فوراً من السيشين
 $error = isset($_SESSION['error']) ? $_SESSION['error'] : null;
 $old_email = isset($_SESSION['old_email']) ? $_SESSION['old_email'] : '';
 
