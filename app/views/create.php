@@ -57,9 +57,9 @@
                         <div class="mb-4">
                             <label for="expense_date" class="form-label fw-semibold text-secondary">Date</label>
                             <input type="date" id="expense_date" name="expense_date" class="form-control" 
-                                   value="<?= date('Y-m-d'); ?>" required>
+                            max="<?= date('Y-m-d'); ?>" 
+                            value="<?= isset($expense['expense_date']) ? htmlspecialchars($expense['expense_date']) : date('Y-m-d'); ?>" required>
                         </div>
-
                         <div class="d-flex justify-content-between">
                             <a href="index.php?page=index" class="btn btn-secondary px-4">
                                 <i class="fa-solid fa-arrow-left me-1"></i> Cancel

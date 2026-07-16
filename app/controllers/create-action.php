@@ -8,15 +8,16 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-   
+    
     $title        = isset($_POST['title']) ? trim($_POST['title']) : '';
     $category     = isset($_POST['category']) ? trim($_POST['category']) : 'Other';
     $amount       = isset($_POST['amount']) ? floatval($_POST['amount']) : 0.0;
     $expense_date = !empty($_POST['expense_date']) ? $_POST['expense_date'] : date('Y-m-d');
-    echo  $title , $amount ;
     $user_id      = isset($_SESSION['user_id']) ? intval($_SESSION['user_id']) : 0;
 
-    if (!empty($title) && $amount > 0 && $user_id > 0) {
+    $today = date('Y-m-d');
+
+    if (!empty($title) && $amount > 0 && $user_id > 0 && $expense_date <= $today) {
         
         $database = new Database();
         $db = $database->getConnection();
