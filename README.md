@@ -31,7 +31,7 @@ Before starting, you will need to download and install a software package called
    * **Mac:** Move the folder to `/Applications/XAMPP/xamppfiles/htdocs/`
    
 > [!NOTE]
-> The final path of the project folder should look like: `C:\xampp\htdocs\Expense-Management-System\`
+> The final path of the project folder should look like: `C:\xampp\htdocs\Expense-Management-System\` . IF not so you did not rename the extracted folder
 
 ---
 
@@ -59,7 +59,8 @@ Before starting, you will need to download and install a software package called
 2. Go to the following address:
    http://localhost/Expense-Management-System/public/
 3. You will be greeted with the Login page.
-
+> [!NOTE]
+> If you found 404 so you did not do step 1 right 
 ---
 
 ## Login Credentials
