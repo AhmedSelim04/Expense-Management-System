@@ -1,5 +1,6 @@
 <?php
 
+
 require_once __DIR__ . '/../configs/database.php';
 require_once __DIR__ . '/../models/expense.php';
 
@@ -9,15 +10,39 @@ $expenseModel = new Expense($db);
 
 $user_id = $_SESSION['user_id'];
 
-$keyword   = isset($_GET['keyword']) ? trim($_GET['keyword']) : '';
-$category  = isset($_GET['category']) ? trim($_GET['category']) : '';
-$from_date = isset($_GET['from_date']) ? $_GET['from_date'] : '';
-$to_date   = isset($_GET['to_date']) ? $_GET['to_date'] : '';
+$keyword = isset($_GET['keyword']) ? htmlspecialchars(trim($_GET['keyword']), ENT_QUOTES, 'UTF-8') : '';
+
+$allowed_categories = ["Food", "Rent", "Utilities", "Transportation", "Entertainment", "Other"];
+$category = '';
+if (isset($_GET['category']) && in_array(trim($_GET['category']), $allowed_categories)) {
+    $category = trim($_GET['category']);
+}
+
+function isValidDate($date, $format = 'Y-m-d') {
+    $d = DateTime::createFromFormat($format, $date);
+    return $d && $d->format($format) === $date;
+}
+
+$from_date = '';
+if (!empty($_GET['from_date']) && isValidDate($_GET['from_date'])) {
+    $from_date = $_GET['from_date'];
+}
+
+$to_date = '';
+if (!empty($_GET['to_date']) && isValidDate($_GET['to_date'])) {
+    $to_date = $_GET['to_date'];
+}
+
+if (!empty($from_date) && !empty($to_date) && $from_date > $to_date) {
+    $from_date = '';
+    $to_date = '';
+}
+
 
 $expenses = $expenseModel->search($user_id, $keyword, $category, $from_date, $to_date);
 
-$total_spent = array_sum(array_column($expenses, 'amount'));?>
-<!DOCTYPE html>
+$total_spent = array_sum(array_column($expenses, 'amount'));
+?><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
