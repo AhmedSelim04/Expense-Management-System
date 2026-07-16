@@ -1,42 +1,85 @@
-# Expense Management System (PHP MVC)
+# 💰 Expense Management System - Local Setup Guide
 
-A lightweight, secure, and clean **Expense Management System** built using **Native **PHP**** following the **Model-View-Controller (**MVC**)** architectural pattern.
+Welcome to the **Expense Management System**! This guide is designed specifically for non-technical users to help you set up and run this application on your local computer.
 
----
-
-## Features
-
-- **Full **CRUD** Operations:** Add, view, edit, and delete expenses.
-- **Smart Filtering:** Filter expenses by search keyword, category, and date range.
-- **Secure Architecture:** Built with prepared statements (**PDO**) to prevent **SQL** Injection and input validation to stop **XSS**, future-date entries, and **URL** tampering.
-- **Responsive UI:** Clean dashboard styled with **Bootstrap 5** and **FontAwesome** icons.
-- **User Authentication:** Protected routes with session management to isolate users' data.
+Follow these simple, step-by-step instructions, and you'll have the system running in no time!
 
 ---
 
-## Project Architecture
+## 📋 Prerequisites
 
-```text
-Expense-Management-System/ ├── app/ │   ├── configs/ │   │   └── database.php      # **PDO** Database Connection │   ├── models/ │   │   ├── user.php          # User authentication queries │   │   └── expense.php       # Expense **CRUD** & filter logic │   ├── controllers/ │   │   ├── login-action.php │   │   ├── logout-action.php │   │   ├── create-action.php │   │   ├── edit-action.php │   │   └── delete-action.php │   └── views/ │       ├── login.php         # Login Page │       ├── index.php         # Dashboard & Filters │       ├── create.php        # Add Expense Form │       └── edit.php          # Edit Expense Form ├── public/ │   └── index.php             # Core Router & Security Middleware └── database.sql                 # database file
-```
-Step-by-Step Local Setup with **XAMPP** Follow these simple steps to install **XAMPP** and run this project on your machine. ## Download & Install XAMPP Download the installer for your OS (Windows or Mac) from the official website: apachefriends.org. Run the installer, click Next through all the steps, and finish the installation using the default path (usually C:\xampp on Windows).
+Before we start, you will need to download and install a software package called **XAMPP**. XAMPP is a free, safe program that bundles everything needed to run this application (a web server and a database) on your computer.
 
-## Start XAMPP Control Panel
+1. **Download XAMPP:**
+   * Go to the official website: [https://www.apachefriends.org/index.html](https://www.apachefriends.org/index.html)
+   * Download the version for your operating system (Windows is recommended for this guide).
+2. **Install XAMPP:**
+   * Run the downloaded installer.
+   * Click **Next** on all prompts (the default settings are perfect).
+   * Finish the installation.
 
-Open the **XAMPP** Control Panel from your Start menu. Click the Start button next to Apache. (The background labels for both will turn green, indicating they are running successfully).
+---
 
-## Download and Move Your Project to htdocs
+## 🚀 Step-by-Step Installation
 
-Download your project folder (if it downloaded as a .zip file, right-click and extract/unzip it first). Go to this folder on your computer: C:\xampp\htdocs\ Move or copy your extracted project folder (Expense-Management-System) directly into that htdocs folder.
+### Step 1: Copy the Project Files
+1. Locate the folder of this project (named `Expense-Management-System`).
+2. Copy this entire folder.
+3. Paste the folder into the XAMPP web directory:
+   * **Windows:** Go to `C:\xampp\htdocs\` and paste it there.
+   * **Mac:** Go to `/Applications/XAMPP/xamppfiles/htdocs/` and paste it there.
+   
+> [!NOTE]
+> The final path of the project folder should look like: `C:\xampp\htdocs\Expense-Management-System\`
 
-## Import the Database
+---
 
-Open your web browser and go to: [http://localhost/phpmyadmin](http://localhost/phpmyadmin) Click on **SQL** in the top navigation bar. (This automatically creates the expense_db database, sets up the tables, and inserts sample data).
+### Step 2: Start the Servers
+1. Open the **XAMPP Control Panel** (you can search for it in your Windows Start menu or Mac Applications).
+2. Look for **Apache** and **MySQL** in the list.
+3. Click the **Start** button next to both of them.
+4. They should turn green, indicating they are running successfully.
 
-How to Run on Any Port If your default port (80) is blocked by other software, or you just want to run it on a custom port (like **8000** or **8080**), you have two simple options: Option A: Using **PHP**'s Built-In Server (Easiest) You don't even need to configure Apache settings. Just use your terminal: Open your terminal or Command Prompt. Bashcd C:\xampp\htdocs\Expense-Management-System Bashphp -S localhost:**9000** -t public Open your browser and go to: [http://localhost:**9000**](http://localhost:**9000**)
+---
 
-Option B: Changing Apache's Port in **XAMPP** If you want Apache to serve your website on a custom port (e.g., **8080**): Open the **XAMPP** Control Panel. Click the Config button next to Apache, and select Apache (httpd.conf). Search (Ctrl + F) for the word Listen. Change Listen 80 to Listen **8080** (or your preferred port number). Search for ServerName localhost:80 and change it to ServerName localhost:**8080**. Save and close the file, then Restart Apache in the Control Panel. [http://localhost:**8080**/Expense-Management-System/public/index.php](http://localhost:**8080**/Expense-Management-System/public/index.php)
+### Step 3: Setup the Database
+1. Open your web browser (like Google Chrome, Edge, or Safari).
+2. Go to this address: [http://localhost/phpmyadmin/](http://localhost/phpmyadmin/)
+3. Click on the **Import** tab at the top of the page.
+4. Click the **Choose File** button.
+5. Navigate to your project folder (`C:\xampp\htdocs\Expense-Management-System\`) and select the file named `database.sql`.
+6. Scroll down to the bottom of the page and click the **Import** (or **Go**) button.
+7. You should see a success message saying the database was imported successfully.
 
-### Security Measures Implemented
+---
 
-Future Date Prevention: Expenses cannot be logged with a date ahead of today. Strict **URL** Validation: Filter values, categories, and date structures passed via URLs are fully sanitized to prevent tampering. Isolated Data Access: Users can only view, edit, or delete expenses belonging strictly to their own accounts.
+### Step 4: Open the Application
+1. Open a new tab in your web browser.
+2. Go to the following address:
+   👉 **[http://localhost/Expense-Management-System/public/](http://localhost/Expense-Management-System/public/)**
+3. You will be greeted with the Login page!
+
+---
+
+## 🔑 Login Credentials
+
+Use the following default account details to log in to the system:
+
+* **Email:** `admin@arabapps.com`
+* **Password:** `123456`
+
+---
+
+## ❓ Troubleshooting & FAQs
+
+### 1. I get a "404 Not Found" error when opening the page.
+* Double-check that your project folder is named exactly `Expense-Management-System` and is placed inside the `htdocs` folder.
+* Ensure you visited `http://localhost/Expense-Management-System/public/` (don't forget the `/public/` part!).
+
+### 2. Apache or MySQL won't start (won't turn green).
+* **For Apache:** This is usually because another program (like Skype or Zoom) is using the same port. Try closing those programs and starting Apache again.
+* **For MySQL:** Restart XAMPP Control Panel as an Administrator (right-click -> Run as Administrator) and try starting it again.
+
+### 3. I get a database connection error.
+* Make sure MySQL is running in the XAMPP Control Panel (it should be green).
+* Check that you successfully imported `database.sql` in Step 3.
