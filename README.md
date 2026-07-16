@@ -37,7 +37,7 @@ Expense-Management-System/
 ├── public/
 │   └── index.php             # Core Router & Security Middleware
 └── database.sql              # database sql 
-
+```
 Step-by-Step Local Setup with XAMPP
 Follow these simple steps to install XAMPP and run this project on your machine.
 
